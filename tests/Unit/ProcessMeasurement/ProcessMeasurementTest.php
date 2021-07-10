@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\ProcessMeasurement;
 
+use App\Domain\ProcessMeasurement\Services\ProcessDistanceAddition;
 use Tests\TestCase;
 
 class ProcessMeasurementTest extends TestCase
