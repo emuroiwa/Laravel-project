@@ -7,7 +7,6 @@ namespace App\Domain\UnitConvertor\Services;
  */
 class DistanceConvertor
 {
-
     /**
      * value
      *
@@ -42,5 +41,30 @@ class DistanceConvertor
         $this->value = $value;
         $this->baseUnit = $toUnit;
         $this->fromUnit = $fromUnit;
+    }
+
+    /**
+     * @param $unit
+     * @return $float
+     */
+    public function convert(): float
+    {
+        return ($this->value * $this->getUnitValue($this->fromUnit)) / $this->getUnitValue($this->baseUnit);
+    }
+
+    /**
+     * getUnitValue
+     *
+     * @param  string $unit
+     * @return float
+     * * @throws \Exception
+     */
+    public function getUnitValue(string $unit): float
+    {
+        if (!isset(config('enums.length_units')[strtoupper($unit)])) {
+            throw new \Exception(sprintf('No conversion %s is defined', $unit));
+        }
+
+        return config('enums.length_units')[strtoupper($unit)];
     }
 }
