@@ -2,10 +2,12 @@
 
 namespace App\Domain\UnitConvertor\Services;
 
+use App\Domain\UnitConvertor\Contracts\UnitConvertorInterface;
+
 /**
  * DistanceConvertor
  */
-class DistanceConvertor
+class DistanceConvertor implements UnitConvertorInterface
 {
     /**
      * value
