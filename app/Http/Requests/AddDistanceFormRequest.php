@@ -24,7 +24,11 @@ class AddDistanceFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'value1' => 'required|numeric',
+            'value2' => 'required|numeric',
+            'unit1' => 'required|alpha_dash',
+            'unit2' => 'required|alpha_dash',
+            'return_unit' => 'required|alpha_dash'
         ];
     }
 }
