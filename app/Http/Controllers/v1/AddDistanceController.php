@@ -20,7 +20,11 @@ class AddDistanceController extends Controller
      */
     public function addDistance(AddDistanceFormRequest $request, ProcessDistanceAddition $addDistance)
     {
-        $result = $addDistance->process($request->all());
-        return $this->success('Distance calculation success', $result);
+        try {
+            $result = $addDistance->process($request->all());
+            return $this->success('Distance calculation success', $result);
+        } catch (\Throwable $th) {
+            return $this->failure($th->getMessage());
+        }
     }
 }
