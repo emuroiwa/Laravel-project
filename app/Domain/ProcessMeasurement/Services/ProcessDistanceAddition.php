@@ -4,11 +4,12 @@ namespace App\Domain\ProcessMeasurement\Services;
 
 use App\Domain\UnitConvertor\Services\DistanceConvertor;
 use App\Domain\Calculator\Services\Addition;
+use App\Domain\ProcessMeasurement\Contracts\ProcessMeasurementInterface;
 
 /**
  * ProcessDistanceAddition
  */
-class ProcessDistanceAddition
+class ProcessDistanceAddition implements ProcessMeasurementInterface
 {
 
     /**
