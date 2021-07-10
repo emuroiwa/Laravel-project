@@ -1,0 +1,33 @@
+version: "3.3"
+services:
+  app:
+    build:
+      args:
+        user: ernest
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: ernest
+    container_name: ernest-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - ernest
+
+  nginx:
+    image: nginx:alpine
+    container_name: ernest-nginx
+    restart: unless-stopped
+    ports:
+      - 9009:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - ernest
+
+networks:
+  ernest:
+    driver: bridge
