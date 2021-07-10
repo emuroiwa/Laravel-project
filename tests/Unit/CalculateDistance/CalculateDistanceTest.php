@@ -6,6 +6,9 @@ use App\Calculator\Calculator;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
+/**
+ * CalculateDistanceTest
+ */
 class CalculateDistanceTest extends TestCase
 {
 
