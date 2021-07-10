@@ -156,3 +156,109 @@ app/Traits/RespondsWithHttpStatus.php
 ```
 
 Response trait clas that has two methods success and failure, these methods wrap json responses
+
+<hr>
+
+<h3>ProcessMeasurementInterface.php</h3>
+
+```shell
+app/Domain/ProcessMeasurement/Contracts/ProcessMeasurementInterface.php
+```
+
+Interface with process function
+
+
+<h3>ProcessDistanceAddition.php</h3>
+
+```shell
+app/Domain/ProcessMeasurement/Services/ProcessDistanceAddition.php
+```
+
+Class dependent on DistanceConvertor and Addition. implements ProcessMeasurementInterface.
+process method
+units and values are mapped together and loop through the new array. While looping through i am buidling an oprerands.
+The new operands array is sent to the Addition setOperands methods. The result is formated to 2 decimal places. 
+The value is push into a new array which is returned
+
+<hr>
+<h3>OperationInterface.php</h3>
+
+```shell
+app/Domain/Calculator/Contracts/OperationInterface.php
+```
+
+Interface with setOperands and calculate function
+
+
+<h3>Addition.php</h3>
+
+```shell
+app/Domain/Calculator/Services/Addition.php
+```
+
+setOperands method, that sets array values to  protected $operands variables.
+calculate method checks if operands are set and throws an exception. Returns summation of array elements
+
+<hr>
+<h3>UnitConvertorInterface.php</h3>
+
+```shell
+app/Domain/UnitConvertor/Contracts/UnitConvertorInterface.php
+```
+
+Interface with convert and getUnitValue function
+
+<h3>DistanceConvertor.php</h3>
+
+```shell
+app/Domain/UnitConvertor/Services/DistanceConvertor.php
+```
+
+Implements UnitConvertorInterface.  The constructor intialises protected $value, protected $baseUnit and protected $fromUnit.
+Method convert() returns a product of value and a result of the to and from SI unit value
+Method getUnitValue() calculate method checks if unit are set and throws an exception. Returns unit value
+
+<hr>
+<h2>Tests</h2>
+<h3>CalculateDistanceTest</h3>
+
+```shell
+tests/Unit/CalculateDistance/CalculateDistanceTest.php
+```
+
+methods
+test_when_calculating_distance_some_fields_are_required()
+test_response_when_there_is_a_successful_calculation()
+test_response_when_there_is_an_error_in_calculation()
+
+<h3>ProcessMeasurementTest.php</h3>
+
+```shell
+tests/Unit/ProcessMeasurement/ProcessMeasurementTest.php
+```
+
+Methods 
+test_calculate_distance_when_units_are_the_same()
+
+
+<h3>AdditionTest.php</h3>
+
+```shell
+tests/Unit/Calculator/AdditionTest.php
+```
+
+Methods
+test_adds_up_given_operands()
+test_no_given_operands_throws_exception_when_calculating()
+
+<h3>DistanceConvertorTest.php</h3>
+
+```shell
+tests/Unit/Calculator/DistanceConvertorTest.php
+```
+
+Methods
+test_converts_given_operands_with_units()
+test_wrong_units_are_given_throws_exception_when_calculating()
+
+
