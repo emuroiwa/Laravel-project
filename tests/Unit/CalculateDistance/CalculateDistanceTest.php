@@ -44,4 +44,22 @@ class CalculateDistanceTest extends TestCase
                 ]
             );
     }
+    
+    /**
+     * test_response_when_there_is_an_error_in_calculation
+     *
+     * @return void
+     */
+    public function test_response_when_there_is_an_error_in_calculation()
+    {
+        $payload = [
+            'value1' => 22,
+            'value2' => 5,
+            'unit1' => 'yard',
+            'unit2' => 'm',
+            'return_unit' => 'inch',
+        ];
+        $this->json('post', 'api/v1/add-distance', $payload)
+            ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
 }
