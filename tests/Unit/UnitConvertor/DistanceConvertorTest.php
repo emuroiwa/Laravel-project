@@ -17,4 +17,11 @@ class DistanceConvertorTest extends TestCase
 
         $this->assertEquals(4.374453193350831, $converted->convert());
     }
+
+    public function test_wrong_units_are_given_throws_exception_when_calculating()
+    {
+        $this->expectException(Exception::class);
+        $converted = new DistanceConvertor(4, 'yard', 'meter');
+        $converted->convert();
+    }
 }
