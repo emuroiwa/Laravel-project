@@ -24,4 +24,19 @@ class Addition
     {
         $this->operands = $operands;
     }
+
+    /**
+     * calculate
+     *
+     * @return float
+     * * @throws \Exception
+     */
+    public function calculate(): float
+    {
+        $result = 0;
+        foreach ($this->operands as $operand) {
+            $result += $operand;
+        }
+        return $result;
+    }
 }
