@@ -2,10 +2,11 @@
 
 namespace App\Domain\Calculator\Services;
 
+use App\Domain\Calculator\Contracts\OperationInterface;
 /**
  * Addition
  */
-class Addition
+class Addition implements OperationInterface
 {
     /**
      * operands
