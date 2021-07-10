@@ -37,7 +37,7 @@ class CalculateDistanceTest extends TestCase
             ->assertStatus(Response::HTTP_OK)
             ->assertJsonStructure(
                 [
-                    [
+                    'data' => [
                         'value',
                         'unit',
                     ]
