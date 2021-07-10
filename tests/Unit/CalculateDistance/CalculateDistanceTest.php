@@ -23,7 +23,12 @@ class CalculateDistanceTest extends TestCase
         $this->assertArrayHasKey('unit2', $response->json()['errors']);
         $this->assertArrayHasKey('return_unit', $response->json()['errors']);
     }
-
+    
+    /**
+     * test_response_when_there_is_a_successful_calculation
+     *
+     * @return void
+     */
     public function test_response_when_there_is_a_successful_calculation()
     {
         $payload = [
