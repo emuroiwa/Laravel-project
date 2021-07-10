@@ -33,10 +33,6 @@ class Addition
      */
     public function calculate(): float
     {
-        $result = 0;
-        foreach ($this->operands as $operand) {
-            $result += $operand;
-        }
-        return $result;
+        return array_sum($this->operands);
     }
 }
