@@ -78,3 +78,81 @@ curl --location --request POST 'http://127.0.0.1:9009/api/v1/add-distance' \
     "return_unit" : "inch"
 }'
 ```
+
+# Files Changed
+
+<h2>Environment</h2>
+<h2>docker-compose</h2>
+
+```shell
+docker-compose.yml
+```
+
+Defines docker services i.e the app and the nginx containers
+
+<h3>Dockerfile</h3>
+
+```shell
+Dockerfile
+```
+
+Has configure settings for the PHP container
+
+
+<h3>shoparize.conf</h3>
+
+```shell
+docker-compose/nginx/myapi.conf
+```
+
+Nginx config file
+
+<hr>
+<h2>Application</h2>
+<h3>RouteServiceProvider.php</h3>
+
+```shell
+app/Providers/RouteServiceProvider.php
+```
+
+simple way to make API versions in Laravel by prefixing v1 to the mapApiRoutes method
+<h3>api.php</h3>
+
+```shell
+routes/api.php
+```
+
+Removed boilerplate code and added add-distance endpoint
+
+
+<h3>AddDistanceRequest.php</h3>
+
+```shell
+app/Http/Requests/AddDistanceFormRequest.php
+```
+
+Laravel form request to validate the incoming request from my endpoint. Added rules and authorize() returns true now
+
+<h3>AddDistanceController.php</h3>
+
+```shell
+app/Http/Controllers/v1/AddDistanceController.php
+```
+
+Added a addDistance method taking the request and ProcessDistanceAddition instance  as arguments. In file i imported AddDistanceFormRequest, ProcessDistanceAddition and RespondsWithHttpStatus. With in the the method there is a try catch block and a call to the ProcessDistanceAddition process method
+
+<h3>enums.php</h3>
+
+```shell
+config/enums.php
+```
+
+ all measurement constants added to the file in an array
+
+<h3>RespondsWithHttpStatus.php</h3>
+
+```shell
+app/Traits/RespondsWithHttpStatus.php
+```
+
+Response trait clas that has two methods success and failure, these methods wrap json responses
