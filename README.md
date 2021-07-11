@@ -29,6 +29,12 @@ cd shoparize-EM
 
 ```
 
+After complete setup process you have to configure you database credentials. First copy `.env.example` as `.env`
+
+```shell
+cp .env.example .env
+```
+
 You containers should be up and running hopefully. Now we have to set directory permissions
 Navigate out of the root folder
 
