@@ -26,13 +26,17 @@ Then change into the project's directory by running the following on your termin
 
 ```
 cd shoparize-EM
-
 ```
 
-After complete setup process you have to configure you database credentials. First copy `.env.example` as `.env`
+Copy `.env.example` as `.env`
 
 ```shell
 cp .env.example .env
+```
+Span up your containers
+
+```shell
+docker-compose up -d
 ```
 
 You containers should be up and running hopefully. Now we have to set directory permissions
@@ -62,6 +66,12 @@ You need to run `composer install` to install application dependencies
 docker-compose exec app composer install
 ```
 
+To generate key please run this:
+
+```
+docker-compose exec app php artisan key:generate
+```
+
 # PHPUnit Tests
 
 In the app root folder run this command in the terminal
@@ -71,7 +81,7 @@ docker-compose exec app ./vendor/bin/phpunit
 ```
 
 # Test Endpoint
-
+In the terminal run this curl request
 ```shell
 curl --location --request POST 'http://127.0.0.1:9009/api/v1/add-distance' \
 --header 'Accept: application/json' \
@@ -145,7 +155,7 @@ Laravel form request to validate the incoming request from my endpoint. Added ru
 app/Http/Controllers/v1/AddDistanceController.php
 ```
 
-Added a addDistance method taking the request and ProcessDistanceAddition instance  as arguments. In file i imported AddDistanceFormRequest, ProcessDistanceAddition and RespondsWithHttpStatus. With in the the method there is a try catch block and a call to the ProcessDistanceAddition process method
+Added a addDistance method taking the request and ProcessDistanceAddition instance  as arguments. In file, i imported AddDistanceFormRequest, ProcessDistanceAddition and RespondsWithHttpStatus. With in the the method there is a try catch block and a call to the ProcessDistanceAddition process method
 
 <h3>enums.php</h3>
 
@@ -181,7 +191,8 @@ app/Domain/ProcessMeasurement/Services/ProcessDistanceAddition.php
 ```
 
 Class dependent on DistanceConvertor and Addition. implements ProcessMeasurementInterface.
-process method
+
+Process method
 units and values are mapped together and loop through the new array. While looping through i am buidling an oprerands.
 The new operands array is sent to the Addition setOperands methods. The result is formated to 2 decimal places. 
 The value is push into a new array which is returned
