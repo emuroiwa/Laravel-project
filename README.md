@@ -1,4 +1,4 @@
-# Shoparize PHP Challenge
+# PHP Challenge
 
 Application made with Laravel 7.29
 
